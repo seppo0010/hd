@@ -1,3 +1,3 @@
 #!/bin/bash
 
-gcc -Os -o hd hd.cc
+gcc -Os -o hd hd.c

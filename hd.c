@@ -40,7 +40,8 @@ static inline void out_text_nl();
 
 // CONSTANTS
 
-static int const MAX_BPL= 32;		// Maximum bytes per line
+#define MAX_BPL 32
+// Maximum bytes per line
 static char hex_ch[]= "0123456789abcdef";
 static char ctrl_ch[]= "       abtn fr             e    ";
 
@@ -110,12 +111,13 @@ int main(int argc, char **argv) {
 
   if (!f_text) {
     int off= f_addr;
-    for (int a= 0; a<n_byt; a++) {
+    int a;
+    for (a= 0; a<n_byt; a++) {
       hxoff[a]= off; off += 3;
       if ((a&7) == 7) off++;
     }
     off++;
-    for (int a= 0; a<n_byt; a++) {
+    for (a= 0; a<n_byt; a++) {
       choff[a]= off; off++;
     }
     end_off= off;
@@ -264,7 +266,8 @@ static inline void out_line(char *bp, int bcnt) {
     op[6]= ':';
   }
 
-  for (int a= 0; a<bcnt; a++) {
+  int a;
+  for (a= 0; a<bcnt; a++) {
     int ch= bp[a] & 255;
     hex(op + hxoff[a], ch);
     op[choff[a]]= (ch < ' ' || ch >= 127) ? '.' : ch;
